@@ -9,7 +9,9 @@ the following commands to get the documentation in Matlab:
 3) doc eivkf_ref
 4) help eivkf_ref
 
-eivkf is used for the optimal estimation of residuals for a given process with known order and model parameters. dipca_eivkf combines eivkf with the DIPCA algorithm and performs model identification in the backend in order to generate optimal residuals using eivkf. The output signatures for both the functions are the same. 
+eivkf is used for the optimal estimation of residuals for a given process with known order and model parameters. dipca_eivkf combines eivkf with the DIPCA
+algorithm and performs model identification in the backend in order to generate optimal residuals using eivkf. The output signatures for both the functions are
+the same. 
 
 eivkf function requires the following inputs:
 Inputs: 1) zn: a matrix of dimension Nx2 with 1st and 2nd columns
