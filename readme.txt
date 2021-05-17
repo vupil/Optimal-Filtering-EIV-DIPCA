@@ -1,13 +1,32 @@
 This code can be downloaded from https://github.com/vupil/Optimal-Filtering-EIV-DIPCA
 
-We provide the documentation here but please refer the dipca_eivkf_demo.m file to
+We provide the documentation here but please refer the dipca_eivkf_demo.m and eivkf.m files to
 understand the usage of this function. We have also provided a readme.txt
 file to understand the usage and working of this function. You can type
 the following commands to get the documentation in Matlab: 
 1) doc dipca_eivkf_ref
 2) help dipca_eivkf_ref
+3) doc eivkf_ref
+4) help eivkf_ref
 
-This function requires the following inputs:
+eivkf is used for the optimal estimation of residuals for a given process with known order and model parameters. dipca_eivkf combines eivkf with the DIPCA algorithm and performs model identification in the backend in order to generate optimal residuals using eivkf. The output signatures for both the functions are the same. 
+
+eivkf function requires the following inputs:
+Inputs: 1) zn: a matrix of dimension Nx2 with 1st and 2nd columns
+               being the output and input variables, respectively. 
+        2) out_par : a vector of a dimension 1x(n+1) where n is order of
+        the system. It contains the coefficients of lagged output variables in the difference equation
+                    in the form [a_0 a_1 a_2 ... a_{L}], where we
+                    normalize a_0 = 1. a_i is the coefficient of y[k-i]
+        3) inp_par : a vector of a dimension 1x(n+1) where n is order of
+        the system. It contains the coefficients of lagged input variables in the difference equation
+                    in the form [b_0 b_1 b_2 ... b_{L}]. 
+                    b_i is the coefficient of u[k-i]
+        3) noise_var: a 1x2 vector where noise_var(1,1) is the output noise variance and noise_var(1,2) is the input noise variance 
+        4) plot_autocorr: a boolean; indicates if the ACF plot should be
+        generated (default is true)
+
+dipca_eivkf function requires the following inputs:
 Inputs: 1) zn: a matrix of dimension Nx2 with 1st and 2nd columns
                being the output and input variables, respectively. 
         2) L : an integer, denotes the lag or stacking order up to which you would like
@@ -18,7 +37,7 @@ Inputs: 1) zn: a matrix of dimension Nx2 with 1st and 2nd columns
         4) plot_autocorr: a boolean; indicates if the ACF plot should be
         generated (default is true)
 
-The function returns the following variables: 
+These functions return the following variables: 
 Outputs: 
         1) eps: a vector of dimension 1xN corresponding to the optimal residuals computed using
         the EIV-Kalman Filter algorithm; the residuals contain
